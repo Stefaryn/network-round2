@@ -1,4 +1,4 @@
-SOURCES = Matrix.cpp main.cpp
+SOURCES = matrix.cc head.cc
 OBJECTS = $(addsuffix .o, $(basename $(SOURCES)))
 FLAGS = -g -W -Wall
 TARGET = out
