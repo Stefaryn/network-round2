@@ -11,9 +11,13 @@ class Vector {
     int length;
     float *vector; 
     Vector();
-    Vector(int , float *);
-    Vector& operator+(Vector&);
+    Vector(int);
+    Vector(int, float *);
+    ~Vector();
+    //Vector& operator+=(Vector&);
 
 };
+
+Vector *operator+(Vector&, Vector&);
 
 #endif
