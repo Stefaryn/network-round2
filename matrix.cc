@@ -7,9 +7,9 @@
 // for a Matrix object
 void Matrix::mat_free(float **mat, int rows){
   for(int i = 0; i < rows; i++){
-    delete mat[i];
+    delete[] mat[i];
   }
-  delete mat;
+  delete[] mat;
 }
 
 // return 0 if exited normally
