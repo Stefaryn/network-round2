@@ -7,9 +7,9 @@
 // for a Matrix object
 void Matrix::mat_free(float **mat, int rows){
   for(int i = 0; i < rows; i++){
-    free(mat[i]);
+    delete mat[i];
   }
-  free(mat);
+  delete mat;
 }
 
 // return 0 if exited normally
@@ -17,12 +17,12 @@ void Matrix::mat_free(float **mat, int rows){
 int Matrix::mat_malloc(float **&dst, int r, int c, float def){
   int ret = 0;
   // allocate
-  dst = (float **)malloc(sizeof(float*)*r);
+  dst = new float*[r];
   if(dst == nullptr){
     ret = 1;
   }
   for(int i = 0; i < r; i++){
-    dst[i] = (float *)malloc(sizeof(float)*c);
+    dst[i] = new float[c];
     if(dst[i] == nullptr){
       ret = 1;
     }
