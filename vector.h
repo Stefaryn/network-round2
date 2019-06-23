@@ -14,10 +14,12 @@ class Vector {
     Vector(int);
     Vector(int, float *);
     ~Vector();
-    //Vector& operator+=(Vector&);
 
 };
 
 Vector *operator+(Vector&, Vector&);
+Vector *operator-(Vector&, Vector&);
+Vector &operator+=(Vector&, Vector&);
+Vector &operator-=(Vector&, Vector&);
 
 #endif
