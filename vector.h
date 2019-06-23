@@ -22,4 +22,11 @@ Vector *operator-(Vector&, Vector&);
 Vector &operator+=(Vector&, Vector&);
 Vector &operator-=(Vector&, Vector&);
 
+Vector *operator*(Vector&, float);
+Vector *operator*(float, Vector&);
+Vector &operator*=(Vector&, float);
+Vector &operator*=(float, Vector&);
+
+float dotProduct(Vector&, Vector&);
+
 #endif
