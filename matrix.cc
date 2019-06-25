@@ -114,7 +114,7 @@ Matrix operator +(Matrix &a, Matrix &b){
   // add
   for(int i = 0; i < r1; i++){
     for(int j = 0; j < c1; j++){
-      temp[i][j] = a.data[i][j] + b.data[i][j];
+      temp[i][j] = a[i][j] + b[i][j];
     }
   }
   
@@ -138,7 +138,7 @@ Matrix operator -(Matrix &a, Matrix &b){
   // subtract
   for(int i = 0; i < r1; i++){
     for(int j = 0; j < c1; j++){
-      temp[i][j] = a.data[i][j] - b.data[i][j];
+      temp[i][j] = a[i][j] - b[i][j];
     }
   }
   
@@ -148,12 +148,57 @@ Matrix operator -(Matrix &a, Matrix &b){
   return result;
 }
 
-Matrix& operator +=(Matrix &a, Matrix &b){
-  return a;
+// unifnished
+Matrix operator *(Matrix &a, Matrix &b){
+  Matrix::validate_op(a,b,'*');
+  int r = a.num_rows(), c = b.num_cols();
+  Matrix res(r,c);
+  for(int i = 0; i < r; i++){
+    for(int j = 0; j < c; j++){
+      for(int k = 0; k < c; k++){
+        res[i][j] += a[i][k]*b[j][k];
+      }
+    }
+  }
+  return res;
+}
+
+float * Matrix::operator [](const int index){ 
+  if(index > rows){
+    std::cerr << "Index out of bounds: " << index << " > " << rows << std::endl;
+  }
+  return data[index];
 }
 
 
+Matrix& operator +=(Matrix &a, Matrix &b){
+  Matrix::validate_op(a, b, '+');
+  for(int i = 0, r = a.num_rows(), c = a.num_cols(); i < r; i++){
+   for(int j = 0; j < c; j++){
+     a[i][j] += b[i][j];
+   } 
+  }
+  return a;
+}
 
+Matrix& operator -=(Matrix &a, Matrix &b){
+  Matrix::validate_op(a, b, '-');
+  for(int i = 0, r = a.num_rows(); i < r; i++){
+   for(int j = 0, c = a.num_cols(); j < c; j++){
+     a[i][j] -= b[i][j];
+   } 
+  }
+  return a;
+}
+
+Matrix& operator *(float s, Matrix& a){
+  for (int i = 0, r = a.num_rows(); i < r; i++){
+    for(int j = 0, c = a.num_cols(); j < c; j++){
+      a[i][j] *= s;
+    }
+  }
+  return a;
+}
 
 
 

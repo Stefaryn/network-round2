@@ -17,10 +17,14 @@ class Matrix{
     // getters
     int num_rows(){ return rows;};
     int num_cols(){ return cols;};
+    float * operator [](const int index);
     // operator overloads
     friend Matrix operator +(Matrix &, Matrix &);
     friend Matrix operator -(Matrix &, Matrix &);
+    friend Matrix operator *(Matrix &a, Matrix &b);
     friend Matrix& operator +=(Matrix &, Matrix&);
+    friend Matrix& operator -=(Matrix &, Matrix&);
+    friend Matrix& operator *(float s, Matrix& a);
 };
 
 #endif
