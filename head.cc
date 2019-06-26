@@ -1,9 +1,10 @@
 #include <iostream>
 #include "matrix.h"
+#include "vector.h"
 
 int main(int argc, char *argv[]){
   Matrix A(5, 5, 1);
-  A = 8*A;
-  A.print(3);
-  std::cout << "A[1][1]: " << A[1][1] << std::endl; 
+  Matrix B(5, 5, 1);
+  Matrix C = A*B;
+  C.print();
 }

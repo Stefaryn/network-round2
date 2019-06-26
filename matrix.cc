@@ -2,6 +2,7 @@
 #include <iomanip>
 
 #include "matrix.h"
+#include "vector.h"
 
 // frees a 2d matrix object, not a deconstructor 
 // for a Matrix object
@@ -148,7 +149,6 @@ Matrix operator -(Matrix &a, Matrix &b){
   return result;
 }
 
-// unifnished
 Matrix operator *(Matrix &a, Matrix &b){
   Matrix::validate_op(a,b,'*');
   int r = a.num_rows(), c = b.num_cols();
@@ -200,23 +200,29 @@ Matrix& operator *(float s, Matrix& a){
   return a;
 }
 
+Matrix& operator *(Matrix& a, float s){
+  for (int i = 0, r = a.num_rows(); i < r; i++){
+    for(int j = 0, c = a.num_cols(); j < c; j++){
+      a[i][j] *= s;
+    }
+  }
+  return a;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// matrix and vector nonsense
+Vector operator *(Matrix &m, Vector &v){
+  int r = m.num_rows(), c = m.num_cols(), l = v.get_length();
+  if(c != l){
+    std::cerr << "ERROR: Invalid matrix-vector multiplication" << std::endl;
+    exit(EXIT_FAILURE);
+  } 
+  Vector temp(r);
+  for(int i = 0; i < r; i++){
+    for(int j = 0; j < c; j++){
+      temp[i] += m[i][j] * v[j];
+    }
+  }
+  return temp;
+}
 
 

@@ -25,6 +25,7 @@ class Matrix{
     friend Matrix& operator +=(Matrix &, Matrix&);
     friend Matrix& operator -=(Matrix &, Matrix&);
     friend Matrix& operator *(float s, Matrix& a);
+    friend Matrix& operator *(Matrix& a, float s);
 };
 
 #endif

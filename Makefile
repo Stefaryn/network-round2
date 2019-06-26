@@ -1,4 +1,4 @@
-SOURCES = matrix.cc head.cc
+SOURCES = vector.cc matrix.cc head.cc
 OBJECTS = $(addsuffix .o, $(basename $(SOURCES)))
 FLAGS = -g -W -Wall
 TARGET = out

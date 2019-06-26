@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Vector.h"
+#include "vector.h"
 
 // Constructor no parameters
 Vector::Vector(){
@@ -141,6 +141,20 @@ float dotProduct(Vector &vec1, Vector &vec2){
   return sum;
 }
 
+int Vector::get_length(){
+  return length;
+}
+
+float& Vector::operator [](int index){
+  if(index > length){
+    std::cerr << "ERROR: Invalid vector index (length: " << length << ")  (index: " << index << ")\n";
+    exit(EXIT_FAILURE);
+  }
+  return vector[index];
+}
+
+
+/*
 // Main for some basic testing, can turn this into a test function later
 int main(){
   
@@ -222,4 +236,4 @@ int main(){
 }
 
 
-
+*/
